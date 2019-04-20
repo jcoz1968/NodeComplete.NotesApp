@@ -10,7 +10,7 @@ console.log(notesMessage);
 console.log(validator.isURL('https://www.npmjs.com'));
 
 console.log(chalk.green('Success!'));
-console.log(chalk.blue('Blue Success!'));
+console.log(chalk.blue.inverse.bold('Blue Success!'));
 console.log(chalk.red('Red Success!'));
 
 console.log(chalk.bgGreen('BG Success!'));
