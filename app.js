@@ -1,21 +1,60 @@
-const validator = require('validator');
 const chalk = require('chalk');
-const getNotes = require('./notes');
+const yargs = require('yargs');
+const notes = require('./notes');
 
-const notesMessage = getNotes();
+yargs.version('1.1.0');
 
-console.log(notesMessage);
+yargs.command({
+  command: 'add',
+  describe: 'Add a new note',
+  builder: {
+    title: {
+      describe: 'Note title',
+      demandOption: true,
+      type: 'string'
+    },
+    body: {
+      describe: 'Note body',
+      demandOption: true,
+      type: 'string'      
+    }
+  },
+  handler: function (argv) {
+    notes.addNote(argv.title, argv.body);
+  }
+});
 
-// console.log(validator.isEmail('coz@nodehero.com'));
-console.log(validator.isURL('https://www.npmjs.com'));
+yargs.command({
+  command: 'remove',
+  describe: 'Remove a note',
+  builder: {
+    title: {
+      describe: 'Note title',
+      demandOption: true,
+      type: 'string'
+    }
+  },
+  handler: function (argv) {
+    notes.removeNote(argv.title);
+  }
+});
 
-console.log(chalk.green('Success!'));
-console.log(chalk.blue.inverse.bold('Blue Success!'));
-console.log(chalk.red('Red Success!'));
+yargs.command({
+  command: 'list',
+  describe: 'list notes',
+  handler: function () {
+    console.log('List notes');
+  }
+});
 
-console.log(chalk.bgGreen('BG Success!'));
-console.log(chalk.bgBlue('BG Blue Success!'));
-console.log(chalk.bgRed('BG Red Success!'));
+yargs.command({
+  command: 'read',
+  describe: 'read a note',
+  handler: function () {
+    console.log('Read note');
+  }
+});
 
-
-
+// console.log(process.argv);
+// console.log(yargs.argv);
+yargs.parse();
