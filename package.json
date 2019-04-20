@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/jcoz1968/NodeComplete.NotesApp#readme",
   "dependencies": {
+    "chalk": "^2.4.1",
     "validator": "^10.11.0"
   }
 }
